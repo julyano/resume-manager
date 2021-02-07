@@ -1,10 +1,11 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.scss';
 import LoginComponent from './pages/login/LoginComponent';
 import LandingPageComponent from './pages/LandingPageComponent';
 import UserComponent from './pages/UserComponent';
 import ProtectedRoute from './security/ProtectedRouter';
+import { NavigationBar } from './components/Navigationbar';
 
 class App extends React.Component {
   constructor(props) {
@@ -36,6 +37,9 @@ class App extends React.Component {
     return (
       <Switch>
       <>
+        <Router>
+          <NavigationBar />
+        </Router>
         <>
           <ProtectedRoute exact path="/home" component={UserComponent} />
         </>
