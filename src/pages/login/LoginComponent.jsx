@@ -1,7 +1,8 @@
 import React from 'react';
 import loginImg from '../../assets/img/login.svg';
 import Auth from '../../security/Auth';
-export class LoginComponent extends React.Component {
+
+class LoginComponent extends React.Component {
 
   constructor(props) {
     super(props);
@@ -70,3 +71,4 @@ export class LoginComponent extends React.Component {
       );
   }
 } 
+export default LoginComponent

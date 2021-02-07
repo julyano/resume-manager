@@ -1,10 +1,10 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.scss';
-import { LoginComponent, RegisterComponent } from './components';
-import LandingPageComponent from './components/LandingPageComponent';
-import UserComponent from './components/UserComponent';
-import { ProtectedRoute } from './security/ProtectedRouter';
+import LoginComponent from './pages/login/LoginComponent';
+import LandingPageComponent from './pages/LandingPageComponent';
+import UserComponent from './pages/UserComponent';
+import ProtectedRoute from './security/ProtectedRouter';
 
 class App extends React.Component {
   constructor(props) {

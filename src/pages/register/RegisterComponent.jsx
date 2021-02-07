@@ -1,7 +1,7 @@
 import React from 'react';
 import loginImg from '../../assets/img/login.svg';
 
-export class RegisterComponent extends React.Component {
+class RegisterComponent extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -44,3 +44,4 @@ export class RegisterComponent extends React.Component {
       );
   }
 } 
+export default RegisterComponent
