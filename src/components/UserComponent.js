@@ -1,4 +1,5 @@
 import React from 'react';
+import auth from '../security/Auth';
 import UserService from '../services/UserService';
 
 class UserComponent extends React.Component {
@@ -9,11 +10,25 @@ class UserComponent extends React.Component {
     }
   }
 
-  componentDidMount() {
-    UserService.getUsers().then((response) => {
-      this.setState({users: response.data});
-    });
+  async componentDidMount() {
+    UserService.getUsers()
+      .then((response) => {
+        this.setState({users: response.data});
+      })
+      .catch((error) => {
+        console.log('erro ', error);
+      });
   }
+
+  findUser() {
+    UserService.getOneUser(1)
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
 
   render() {
     return (
@@ -42,6 +57,20 @@ class UserComponent extends React.Component {
             }
           </tbody>
         </table>
+        <button
+          className="btn btn-outline-secondary"
+          type="button"
+          onClick={this.findUser}
+        >
+          Search
+        </button>
+        <button type="button" className="btn" onClick={
+                  () => {
+                    auth.logout(() => {
+                      this.props.history.push("/");
+                    });
+                  }
+                }>Logout</button>
       </div>
     );
   }

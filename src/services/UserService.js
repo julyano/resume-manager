@@ -1,11 +1,36 @@
-import axios from 'axios';
-
-const REST_BASE_API_URL = 'http://localhost:8081/api';
-const REST_USERS_API_URL = `${REST_BASE_API_URL}/users`;
+import http from "../common/http/http-common";
+const endpoint = '/users';
 
 class UserService {
-  getUsers() {
-    return axios.get(REST_USERS_API_URL);
+
+  async getUsers() {
+    try {
+      await http.get(endpoint)
+    } catch (error) {
+      console.log('erro');
+    } finally {
+      console.log('fim');
+    }
+  }
+
+  getOneUser(id) {
+    return http.get(`${endpoint}/${id}`).then(res => console.log(res))
+    .catch(error => console.log(error))
+  }
+
+  createUser(user) {
+    return http.post(`${endpoint}`, user).then(res => console.log(res))
+    .catch(error => console.log(error))
+  }
+
+  updateUser(id, user) {
+    return http.put(`${endpoint}/${id}`, user).then(res => console.log(res))
+    .catch(error => console.log(error))
+  }
+
+  deleteUser(id) {
+    return http.delete(`${endpoint}/${id}`).then(res => console.log(res))
+    .catch(error => console.log(error))
   }
 }
 

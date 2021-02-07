@@ -1,7 +1,10 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import './App.scss';
 import { LoginComponent, RegisterComponent } from './components';
-// import UserComponent from './components/UserComponent';
+import LandingPageComponent from './components/LandingPageComponent';
+import UserComponent from './components/UserComponent';
+import { ProtectedRoute } from './security/ProtectedRouter';
 
 class App extends React.Component {
   constructor(props) {
@@ -11,7 +14,7 @@ class App extends React.Component {
     };
   }
 
-  componentDidMount() {
+  /*componentDidMount() {
     //Add .right by default
     this.rightSide.classList.add("right");
   }
@@ -27,9 +30,25 @@ class App extends React.Component {
       this.rightSide.classList.add("right");
     }
     this.setState(prevState => ({ isLogginActive: !prevState.isLogginActive }));
-  }
+  }*/
 
   render() {
+    return (
+      <Switch>
+      <>
+        <>
+          <ProtectedRoute exact path="/home" component={UserComponent} />
+        </>
+        <div className="App">
+          <Route exact path="/" component={LandingPageComponent} />
+          <Route exact path="/login" component={LoginComponent} />
+        </div>
+      </>
+      </Switch>
+    );
+  }
+
+  /*render() {
     const { isLogginActive } = this.state;
     const current = isLogginActive ? "Register" : "Login";
     const currentActive = isLogginActive ? "login" : "register";
@@ -54,9 +73,9 @@ class App extends React.Component {
       </div>
     );
   }
-}
+}*/
 
-const RightSide = props => {
+/*const RightSide = props => {
   return (
     <div
       className="right-side"
@@ -68,6 +87,6 @@ const RightSide = props => {
       </div>
     </div>
   );
-};
-
+};*/
+}
 export default App;
